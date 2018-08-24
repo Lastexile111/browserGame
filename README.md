@@ -16,3 +16,4 @@
 
 
 *Use cases:*
+![UML model](https://www.draw.io/#LUntitled%20Diagram.xml) 
