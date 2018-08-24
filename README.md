@@ -1,5 +1,6 @@
 # browserGame
 **Тестовый проект для LevelUP "Java Junior Developer"**
+
 *Общее описание:*
 
 Сражение состоит из 3 итераций, 
