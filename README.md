@@ -18,22 +18,33 @@
 
 *Use cases:*
 
-User
+User:
+
 ![User](https://github.com/Lastexile111/browserGame/blob/master/User-UseCase.PNG)
 
-Registration
+
+Registration:
+
 ![Registration](https://github.com/Lastexile111/browserGame/blob/master/Register-UseCase.PNG)
 
-Sign In
+
+Sign In:
+
 ![SignIn](https://github.com/Lastexile111/browserGame/blob/master/SignIn-UseCase.PNG)
 
-Fight!
+
+Fight!:
+
 ![Fight!](https://github.com/Lastexile111/browserGame/blob/master/Fight-UseCase.PNG)
 
-My Battles
+
+My Battles:
+
 ![My Battles](https://github.com/Lastexile111/browserGame/blob/master/MyBattles-UseCase.PNG)
 
-Chart
+
+Chart:
+
 ![Chart](https://github.com/Lastexile111/browserGame/blob/master/Chart-UseCase.PNG)
 
 
