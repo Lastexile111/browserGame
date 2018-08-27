@@ -32,6 +32,10 @@ Sign In:
 
 ![SignIn](https://github.com/Lastexile111/browserGame/blob/master/SignIn-UseCase.PNG)
 
+Create Tactic:
+
+![CreateTactic](https://github.com/Lastexile111/browserGame/blob/master/CreateTactic-UseCase.PNG)
+
 
 Fight!:
 
