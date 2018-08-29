@@ -1,14 +1,29 @@
 package ru.levelup.project.model;
 
-public class Battle {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "BATTLES")
+public class Battle {
+    @Id
+    @GeneratedValue
     private int battleId;
+
+    @ManyToMany(mappedBy = "battle", fetch = FetchType.LAZY)
     private User firstFighter;
+
+    @ManyToMany(mappedBy = "battle", fetch = FetchType.LAZY)
     private User secondFighter;
+
+    @ManyToMany(mappedBy = "battle", fetch = FetchType.LAZY)
     private User winner;
 
-    public Battle(int battleId, User firstFighter, User secondFighter) {
-        this.battleId = battleId;
+    public Battle() {
+    }
+
+    public Battle(User firstFighter, User secondFighter) {
+        if (firstFighter == null) throw new IllegalArgumentException("firstFighter shouldn't be null");
+        if (secondFighter == null) throw new IllegalArgumentException("secondFighter shouldn't be null");
         this.firstFighter = firstFighter;
         this.secondFighter = secondFighter;
     }
@@ -44,4 +59,6 @@ public class Battle {
     public void setWinner(User winner) {
         this.winner = winner;
     }
+
+
 }
