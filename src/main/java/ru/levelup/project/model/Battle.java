@@ -9,14 +9,15 @@ public class Battle {
     @GeneratedValue
     private int battleId;
 
-    @ManyToMany(mappedBy = "battle", fetch = FetchType.LAZY)
-    private User firstFighter;
+    @ManyToOne
+    private User provoker;
 
-    @ManyToMany(mappedBy = "battle", fetch = FetchType.LAZY)
-    private User secondFighter;
+    @ManyToOne
+    private User participant;
 
-    @ManyToMany(mappedBy = "battle", fetch = FetchType.LAZY)
+    @ManyToOne
     private User winner;
+
 
     public Battle() {
     }
@@ -24,8 +25,8 @@ public class Battle {
     public Battle(User firstFighter, User secondFighter) {
         if (firstFighter == null) throw new IllegalArgumentException("firstFighter shouldn't be null");
         if (secondFighter == null) throw new IllegalArgumentException("secondFighter shouldn't be null");
-        this.firstFighter = firstFighter;
-        this.secondFighter = secondFighter;
+        this.provoker = firstFighter;
+        this.participant = secondFighter;
     }
 
     public int getBattleId() {
@@ -36,20 +37,20 @@ public class Battle {
         this.battleId = battleId;
     }
 
-    public User getFirstFighter() {
-        return firstFighter;
+    public User getProvoker() {
+        return provoker;
     }
 
-    public void setFirstFighter(User firstFighter) {
-        this.firstFighter = firstFighter;
+    public void setProvoker(User provoker) {
+        this.provoker = provoker;
     }
 
-    public User getSecondFighter() {
-        return secondFighter;
+    public User getParticipant() {
+        return participant;
     }
 
-    public void setSecondFighter(User secondFighter) {
-        this.secondFighter = secondFighter;
+    public void setParticipant(User participant) {
+        this.participant = participant;
     }
 
     public User getWinner() {

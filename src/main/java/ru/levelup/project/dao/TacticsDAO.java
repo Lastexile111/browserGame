@@ -5,7 +5,7 @@ import ru.levelup.project.model.User;
 
 import java.util.List;
 
-public interface TacticDAO {
+public interface TacticsDAO {
     Tactic findById (int id);
     List<Tactic> findByFighter(User fighter);
     void add(Tactic tactic);

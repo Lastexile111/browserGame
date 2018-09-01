@@ -15,7 +15,7 @@ public class Tactic {
     @Column
     private int Defence;
 
-    @OneToOne
+    @ManyToOne
     private User fighter;
 
     public Tactic() {

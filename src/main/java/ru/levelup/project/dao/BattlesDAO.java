@@ -5,7 +5,8 @@ import ru.levelup.project.model.User;
 
 import java.util.List;
 
-public interface BattleDAO {
+public interface BattlesDAO {
+    Battle findBattleId (int id);
     List<Battle> findMyBattles(User user);
     User calculateBattle(Battle battle);
     void add(Battle battle);

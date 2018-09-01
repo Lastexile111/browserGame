@@ -2,9 +2,11 @@ package ru.levelup.project.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "USERS")
-public class User {
+public  class User {
     @Id
     @Column(length = 50,unique = true, nullable = false)
     private String login;
@@ -12,22 +14,20 @@ public class User {
     @Column(length = 50, nullable = false)
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private int exp;
 
-    @OneToOne(mappedBy = "fighter", fetch = FetchType.LAZY)
-    private Tactic firstTactic;
-    @OneToOne(mappedBy = "fighter", fetch = FetchType.LAZY)
-    private Tactic secondTactic;
-    @OneToOne(mappedBy = "fighter", fetch = FetchType.LAZY)
-    private Tactic thirdTactic;
+    @OneToMany(mappedBy = "fighter", fetch = FetchType.LAZY)
+    private List<Tactic> tactics;
 
-    @ManyToMany
-    @JoinTable(name = "user_battles",
-            joinColumns =  @JoinColumn(name = "login"),
-            inverseJoinColumns = @JoinColumn(name = "battleId")
-    )
-    private Battle battle;
+    @OneToMany(mappedBy = "provoker", fetch = FetchType.LAZY)
+    private List<Battle> attacks;
+
+    @OneToMany(mappedBy = "participant", fetch = FetchType.LAZY)
+    private List<Battle> defences;
+
+    @OneToMany(mappedBy = "winner", fetch = FetchType.LAZY)
+    private List<Battle> victories;
 
 
 
@@ -37,6 +37,7 @@ public class User {
     public User(String login, String password) {
         this.login = login;
         this.password = password;
+        this.exp = 0;
     }
 
     public String getLogin() {
@@ -47,25 +48,40 @@ public class User {
         return password;
     }
 
-
     public int getExp() {
         return exp;
     }
 
-    public Tactic getFirstTactic() {
-        return firstTactic;
+    public List<Tactic> getTactics() {
+        return tactics;
     }
 
-    public Tactic getSecondTactic() {
-        return secondTactic;
+    public void setTactics(List<Tactic> tactics) {
+        this.tactics = tactics;
     }
 
-    public Tactic getThirdTactic() {
-        return thirdTactic;
+    public List<Battle> getAttacks() {
+        return attacks;
     }
 
-    public Battle getBattle() {
-        return battle;
+    public void setAttacks(List<Battle> attacks) {
+        this.attacks = attacks;
+    }
+
+    public List<Battle> getDefences() {
+        return defences;
+    }
+
+    public void setDefences(List<Battle> defences) {
+        this.defences = defences;
+    }
+
+    public List<Battle> getVictories() {
+        return victories;
+    }
+
+    public void setVictories(List<Battle> victories) {
+        this.victories = victories;
     }
 
     public void setLogin(String login) {
@@ -80,19 +96,5 @@ public class User {
         this.exp = exp;
     }
 
-    public void setFirstTactic(Tactic firstTactic) {
-        this.firstTactic = firstTactic;
-    }
 
-    public void setSecondTactic(Tactic secondTactic) {
-        this.secondTactic = secondTactic;
-    }
-
-    public void setThirdTactic(Tactic thirdTactic) {
-        this.thirdTactic = thirdTactic;
-    }
-
-    public void setBattle(Battle battle) {
-        this.battle = battle;
-    }
 }
