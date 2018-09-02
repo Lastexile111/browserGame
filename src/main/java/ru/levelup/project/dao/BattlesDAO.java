@@ -8,6 +8,6 @@ import java.util.List;
 public interface BattlesDAO {
     Battle findBattleId (int id);
     List<Battle> findMyBattles(User user);
-    User calculateBattle(Battle battle);
     void add(Battle battle);
+    User calculateBattle(Battle battle);
 }

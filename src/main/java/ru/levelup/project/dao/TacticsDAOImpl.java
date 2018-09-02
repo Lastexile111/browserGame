@@ -25,6 +25,7 @@ public class TacticsDAOImpl implements TacticsDAO {
     @Override
     public List<Tactic> findByFighter(User fighter) {
         return em.createQuery("SELECT t FROM Tactic t WHERE t.fighter = :fighter")
+                .setParameter("fighter", fighter)
                 .getResultList();
     }
 

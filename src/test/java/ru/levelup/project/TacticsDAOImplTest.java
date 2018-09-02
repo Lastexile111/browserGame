@@ -14,6 +14,7 @@ import ru.levelup.project.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -42,18 +43,18 @@ public class TacticsDAOImplTest {
 
     @Test
     public void tacticFindByIdTest(){
-        TacticsDAO usersDAO = new TacticsDAOImpl(em);
+        TacticsDAO tacticsDAO = new TacticsDAOImpl(em);
         Tactic tactic = new Tactic(1,2);
-        usersDAO.add(tactic);
+        tacticsDAO.add(tactic);
 
-        assertEquals(tactic, usersDAO.findById(0));
+        assertEquals(tactic, tacticsDAO.findById(1));
     }
 
     @Test
     public void tacticAddTest() {
-        TacticsDAO usersDAO = new TacticsDAOImpl(em);
+        TacticsDAO tacticsDAO = new TacticsDAOImpl(em);
         Tactic tactic = new Tactic(1,2);
-        usersDAO.add(tactic);
+        tacticsDAO.add(tactic);
 
         assertEquals(tactic, em.find(Tactic.class, 1));
     }
@@ -61,8 +62,36 @@ public class TacticsDAOImplTest {
 
 
     @Test
-    public void findByFighter() {
+    public void findByFighterTest() {
+        UsersDAO usersDAO = new UsersDAOImpl(em);
+        User user = new User("Tester", "Qwe");
+        usersDAO.add(user);
+        TacticsDAO tacticsDAO = new TacticsDAOImpl(em);
 
+        Tactic tactic1 = new Tactic(1,2);
+
+        tacticsDAO.add(tactic1);
+        tactic1.setFighter(user);
+        Tactic tactic2 = new Tactic(2,3);
+
+        tacticsDAO.add(tactic2);
+        tactic2.setFighter(user);
+        Tactic tactic3 = new Tactic(3,1);
+        tactic3.setFighter(user);
+        tacticsDAO.add(tactic3);
+
+        List<Tactic> tacticList = new ArrayList<>();
+        tacticList.add(tactic1);
+        tacticList.add(tactic2);
+        tacticList.add(tactic3);
+
+
+        user.setTactics(tacticList);
+
+
+        List<Tactic> result = tacticsDAO.findByFighter(user);
+        assertEquals(3, result.size());
+        assertEquals(tacticList.get(0), result.get(0) );
 
     }
 }
